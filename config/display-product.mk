@@ -237,6 +237,7 @@ ifeq ($(call is-vendor-board-platform,QCOM),true)
 endif
 
 # Techpack values
+BUILD_DISPLAY_TECHPACK_SOURCE := true
 
 ifeq ($(TARGET_IS_HEADLESS), true)
     # TODO: QMAA prebuilts
