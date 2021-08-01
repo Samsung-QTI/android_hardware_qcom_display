@@ -1,4 +1,4 @@
-include hardware/qcom/display/config/display-modules.mk
+include hardware/qcom-caf/blair/config/display-modules.mk
 include vendor/qcom/opensource/mm-drivers/mm_driver_product.mk
 include vendor/qcom/opensource/display-drivers/display_driver_product.mk
 
