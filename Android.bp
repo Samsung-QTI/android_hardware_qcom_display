@@ -282,23 +282,3 @@ cc_library_headers {
         "display_debug_headers",
     ],
 }
-
-subdirs = [
-    "init",
-    "libqservice",
-    "libqdutils",
-    "libddebug",
-    "libdrmutils",
-    "libhistogram",
-    "liblight",
-    "composer",
-    "composer_test_service",
-    "gralloc",
-    "gpu_tonemapper",
-    "hdmi_cec",
-    "sde-drm",
-    "sdm/libs/utils",
-    "sdm/libs/core",
-    "qmaa",
-    "oem_services",
-]
