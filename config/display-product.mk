@@ -82,6 +82,14 @@ PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_lide_hx83102j
 PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt.xml
 PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt_agc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt_agc.xml
 
+#QDCM calibration xml files for icnl9951r panels
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_chipone_icnl9951r_wt_dsi_vdo_90hz_boe.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_chipone_icnl9951r_wt_dsi_vdo_90hz_boe.xml
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_djn_icnl9951r_wt_dsi_vdo_90hz_boe.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_djn_icnl9951r_wt_dsi_vdo_90hz_boe.xml
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_hjr_icnl9951r_wt_dsi_vdo_90hz_hkc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_hjr_icnl9951r_wt_dsi_vdo_90hz_hkc.xml
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_txd_icnl9951r_wt_dsi_vdo_90hz_hkc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_txd_icnl9951r_wt_dsi_vdo_90hz_hkc.xml
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt.xml
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt_agc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt_agc.xml
+
 PRODUCT_VENDOR_PROPERTIES += \
     persist.demo.hdmirotationlock=false \
     persist.sys.sf.color_saturation=1.0 \
