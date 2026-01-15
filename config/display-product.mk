@@ -93,6 +93,11 @@ PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_xinxian_icnl9
 #QDCM calibration xml files for jd9366ts panel
 PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_xinxian_jd9366ts_wt_dsi_vdo_90hz_csot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_xinxian_jd9366ts_wt_dsi_vdo_90hz_csot.xml
 
+#QDCM calibration xml files for ft8203 panels
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_dsbj_ft8203_wt_dsi_vdo_90hz_inx.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_dsbj_ft8203_wt_dsi_vdo_90hz_inx.xml
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_focaltech_ft8203_wt_dsi_vdo_90hz_apf_boe.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_focaltech_ft8203_wt_dsi_vdo_90hz_apf_boe.xml
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_ft8203_wt_dsi_vdo_90hz_focaltech.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_ft8203_wt_dsi_vdo_90hz_focaltech.xml
+
 PRODUCT_VENDOR_PROPERTIES += \
     persist.demo.hdmirotationlock=false \
     persist.sys.sf.color_saturation=1.0 \
