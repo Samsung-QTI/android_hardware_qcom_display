@@ -79,6 +79,11 @@ PRODUCT_COPY_FILES += $(DISPLAY_HAL_DIR)/config/display_id_sample.xml:$(TARGET_C
 #SDR Dimming config file for r66451, display id is 4630946716506123905
 PRODUCT_COPY_FILES += $(DISPLAY_HAL_DIR)/config/display_id_sample.xml:$(TARGET_COPY_OUT_VENDOR)/etc/displayconfig/display_id_4630946716506123905.xml
 
+#QDCM calibration xml files for hx83102j panels
+PRODUCT_COPY_FILES += $(DISPLAY_HAL_DIR)/config/qdcm_calib_data_lide_hx83102j_wt_dsi_vdo_90hz_hsd.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_lide_hx83102j_wt_dsi_vdo_90hz_hsd.xml
+PRODUCT_COPY_FILES += $(DISPLAY_HAL_DIR)/config/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt.xml
+PRODUCT_COPY_FILES += $(DISPLAY_HAL_DIR)/config/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt_agc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_starry_hx83102j_wt_dsi_vdo_90hz_mdt_agc.xml
+
 PRODUCT_VENDOR_PROPERTIES += \
     persist.demo.hdmirotationlock=false \
     persist.sys.sf.color_saturation=1.0 \
