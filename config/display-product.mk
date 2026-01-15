@@ -90,6 +90,9 @@ PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_txd_icnl9951r
 PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt.xml
 PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt_agc.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_xinxian_icnl9951r_wt_dsi_vdo_90hz_mdt_agc.xml
 
+#QDCM calibration xml files for jd9366ts panel
+PRODUCT_COPY_FILES += hardware/qcom/display/config/qdcm_calib_data_xinxian_jd9366ts_wt_dsi_vdo_90hz_csot.xml:$(TARGET_COPY_OUT_VENDOR)/etc/qdcm_calib_data_xinxian_jd9366ts_wt_dsi_vdo_90hz_csot.xml
+
 PRODUCT_VENDOR_PROPERTIES += \
     persist.demo.hdmirotationlock=false \
     persist.sys.sf.color_saturation=1.0 \
