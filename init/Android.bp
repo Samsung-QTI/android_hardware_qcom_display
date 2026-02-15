@@ -3,9 +3,6 @@ prebuilt_etc {
     src: "init.qti.display_boot.rc",
     sub_dir: "init",
     vendor: true,
-    strip: {
-        none: true,
-    },
 }
 
 sh_binary {
