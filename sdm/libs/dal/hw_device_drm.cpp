@@ -413,7 +413,7 @@ int HWDeviceDRM::Registry::CreateFbId(const LayerBuffer &buffer, uint32_t *fb_id
   }
   ret = master->CreateFbId(layout, fb_id);
   if (ret < 0) {
-    DLOGE("CreateFbId failed. width %d, height %d, format: %s, usage %d, stride %u, "
+    DLOGE("CreateFbId failed. width %d, height %d, format: %s, usage %" PRIu64 ", stride %u, "
           "unaligned_width %d, unaligned_height %d, error %d", layout.width, layout.height,
           GetFormatString(buf_info.format), buf_info.usage, layout.stride[0],
           buffer.unaligned_width, buffer.unaligned_height, errno);
@@ -1271,7 +1271,7 @@ DisplayError HWDeviceDRM::PowerOff(bool teardown, SyncPoints *sync_points) {
   int ret = NullCommit(false /* synchronous */, false /* retain_planes */);
   if (ret) {
     DLOGE("Failed with error: %d, dynamic_fps=%d, seamless_mode_switch_=%d, vrefresh_=%d,"
-     "panel_mode_changed_=%d bit_clk_rate_=%d", ret, hw_panel_info_.dynamic_fps,
+     "panel_mode_changed_=%d bit_clk_rate_=%" PRIu64, ret, hw_panel_info_.dynamic_fps,
      seamless_mode_switch_, vrefresh_, panel_mode_changed_, bit_clk_rate_);
     return kErrorHardware;
   }
@@ -1943,8 +1943,9 @@ DisplayError HWDeviceDRM::AtomicCommit(HWLayersInfo *hw_layers_info) {
     uint64_t current_time = (UINT64(t.tv_sec) * 1000000000LL + t.tv_nsec);
     if (current_time < future_timestamp) {
       uint64_t sleep_period = future_timestamp - current_time;
-      DLOGI_IF(kTagDriverConfig, "current_time: %llu, future_timestamp: %llu, sleep_period: %llu,"
-              "vsync_period: %llu", current_time, future_timestamp, sleep_period, vsync_period);
+      DLOGI_IF(kTagDriverConfig, "current_time: %" PRIu64 ", future_timestamp: %" PRIu64
+              ", sleep_period: %" PRIu64 ",vsync_period: %" PRIu64,
+              current_time, future_timestamp, sleep_period, vsync_period);
       usleep(UINT32(sleep_period / 1000));
     }
   }
@@ -2802,7 +2803,7 @@ void HWDeviceDRM::SetUcscCsc(const HWUcscCsc &ucsc_csc, drm_msm_ucsc_csc *csc) {
   csc->cfg_param_0_len = UCSC_CSC_CFG0_PARAM_LEN;
   for (i = 0; i < csc->cfg_param_0_len; i++) {
     csc->cfg_param_0[i] = ucsc_csc.cfg_param_0[i];
-    DLOGV_IF(kTagDriverConfig, " UCSC csc[%d] = %lld", i, csc->cfg_param_0[i]);
+    DLOGV_IF(kTagDriverConfig, " UCSC csc[%d] = %u", i, csc->cfg_param_0[i]);
   }
   csc->cfg_param_1_len = UCSC_CSC_CFG1_PARAM_LEN;
   for (i = 0; i < csc->cfg_param_1_len; i++) {
@@ -2819,7 +2820,7 @@ void HWDeviceDRM::SetDGMCscV1(const HWCsc &dgm_csc, sde_drm_csc_v1 *csc_v1) {
   uint32_t i = 0;
   for (i = 0; i < MAX_CSC_MATRIX_COEFF_SIZE; i++) {
     csc_v1->ctm_coeff[i] = dgm_csc.ctm_coeff[i];
-    DLOGV_IF(kTagDriverConfig, " DGM csc_v1[%d] = %lld", i, csc_v1->ctm_coeff[i]);
+    DLOGV_IF(kTagDriverConfig, " DGM csc_v1[%d] = %" PRId64, i, static_cast<int64_t>(csc_v1->ctm_coeff[i]));
   }
   for (i = 0; i < MAX_CSC_BIAS_SIZE; i++) {
     csc_v1->pre_bias[i] = dgm_csc.pre_bias[i];

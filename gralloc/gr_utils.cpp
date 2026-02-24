@@ -2210,10 +2210,10 @@ uint64_t GetMetaDataSize(uint64_t reserved_region_size, uint64_t custom_content_
 }
 
 void UnmapAndReset(private_handle_t *handle) {
-  uint64_t reserved_region_size = handle->reserved_size;
+  uint64_t reserved_region_size = 0;
   if (private_handle_t::validate(handle) == 0 && handle->base_metadata) {
     munmap(reinterpret_cast<void *>(handle->base_metadata),
-           GetMetaDataSize(reserved_region_size, handle->custom_content_md_reserved_size));
+           GetMetaDataSize(reserved_region_size, 0));
     handle->base_metadata = 0;
   }
 }
@@ -2229,8 +2229,8 @@ int ValidateAndMap(private_handle_t *handle) {
   }
 
   if (!handle->base_metadata) {
-    uint64_t reserved_region_size = handle->reserved_size;
-    uint64_t size = GetMetaDataSize(reserved_region_size, handle->custom_content_md_reserved_size);
+    uint64_t reserved_region_size = 0;
+    uint64_t size = GetMetaDataSize(reserved_region_size, 0);
     void *base = mmap(NULL, size, PROT_READ | PROT_WRITE, MAP_SHARED, handle->fd_metadata, 0);
     if (base == reinterpret_cast<void *>(MAP_FAILED)) {
       ALOGE("%s: metadata mmap failed - handle:%p fd: %d err: %s", __func__, handle,
@@ -2369,7 +2369,7 @@ bool getGralloc4Array(MetaData_t *metadata, int64_t paramType) {
 #endif
       return true;
     default:
-      ALOGE("paramType %d not supported", paramType);
+      ALOGE("paramType %" PRId64 " not supported", paramType);
       return false;
   }
 }
@@ -3191,6 +3191,9 @@ Error GetMetaDataInternal(void *buffer, int64_t type, void *in, void **out) {
           ret = Error::BAD_VALUE;
           break;
         }
+      } else {
+        ret = Error::BAD_VALUE;
+        break;
       }
     }
     case QTI_YUV_PLANE_INFO: {
@@ -3236,6 +3239,9 @@ Error GetMetaDataInternal(void *buffer, int64_t type, void *in, void **out) {
           ret = Error::BAD_VALUE;
           break;
         }
+      } else {
+        ret = Error::BAD_VALUE;
+        break;
       }
     }
     case QTI_CUSTOM_DIMENSIONS_HEIGHT: {
@@ -3249,6 +3255,9 @@ Error GetMetaDataInternal(void *buffer, int64_t type, void *in, void **out) {
           ret = Error::BAD_VALUE;
           break;
         }
+      } else {
+        ret = Error::BAD_VALUE;
+        break;
       }
     }
     case QTI_RGB_DATA_ADDRESS: {
@@ -3261,6 +3270,9 @@ Error GetMetaDataInternal(void *buffer, int64_t type, void *in, void **out) {
           ret = Error::BAD_BUFFER;
           break;
         }
+      } else {
+        ret = Error::BAD_VALUE;
+        break;
       }
     }
     case QTI_BUFFER_TYPE:
@@ -3332,7 +3344,7 @@ Error GetMetaDataInternal(void *buffer, int64_t type, void *in, void **out) {
       break;
 #endif
     default:
-      ALOGD_IF(DEBUG, "Unsupported metadata type %d", type);
+      ALOGD_IF(DEBUG, "Unsupported metadata type %" PRId64, type);
       ret = Error::BAD_VALUE;
       break;
   }
@@ -3386,7 +3398,7 @@ void setGralloc4Array(MetaData_t *metadata, int64_t paramType, bool isSet) {
     case QTI_MEM_HANDLE:
       break;
     default:
-      ALOGE("paramType %d not supported in Gralloc4", paramType);
+      ALOGE("paramType %" PRId64 " not supported in Gralloc4", paramType);
   }
 }
 
@@ -3421,7 +3433,7 @@ Error SetMetaData(private_handle_t *handle, uint64_t paramType, void *param) {
         break;
 #endif
       default:
-        ALOGE("Unknown paramType %d", paramType);
+        ALOGE("Unknown paramType %" PRIu64, paramType);
         break;
     }
     // param unset
@@ -3549,7 +3561,7 @@ Error SetMetaData(private_handle_t *handle, uint64_t paramType, void *param) {
       data->memHandle = *(reinterpret_cast<int64_t *>(param));
       break;
     default:
-      ALOGE("Unknown paramType %d", paramType);
+      ALOGE("Unknown paramType %" PRIu64, paramType);
       break;
   }
   return Error::NONE;
