@@ -75,6 +75,7 @@ cc_library_shared {
     cflags: [
         "-DLOG_TAG=\"qdgralloc\"",
         "-D__QTI_DISPLAY_GRALLOC__",
+        "-DQMAA",
         "-Wno-sign-conversion",
         "-Wno-unused-parameter",
     ],
