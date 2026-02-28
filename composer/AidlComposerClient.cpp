@@ -333,6 +333,13 @@ ScopedAStatus AidlComposerClient::getDisplayConfigs(int64_t in_display,
   return TO_BINDER_STATUS(INT32(error));
 }
 
+ScopedAStatus AidlComposerClient::getDisplayConfigurations(
+    int64_t in_display, int32_t in_maxFrameIntervalNs,
+    std::vector<::aidl::android::hardware::graphics::composer3::DisplayConfiguration>*
+        _aidl_return) {
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
 ScopedAStatus AidlComposerClient::getDisplayConnectionType(int64_t in_display,
                                                            DisplayConnectionType *aidl_return) {
   auto error = hwc_session_->GetDisplayConnectionType(in_display, aidl_return);
@@ -544,6 +551,29 @@ ScopedAStatus AidlComposerClient::getDisplayDecorationSupport(
   }
 
   return TO_BINDER_STATUS(INT32(error));
+}
+
+ScopedAStatus AidlComposerClient::notifyExpectedPresent(
+    int64_t in_display, const ClockMonotonicTimestamp &in_expectedPresentTime,
+    int32_t in_frameIntervalNs) {
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
+ScopedAStatus AidlComposerClient::getMaxLayerPictureProfiles(int64_t in_display,
+                                                             int32_t *_aidl_return) {
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
+ScopedAStatus AidlComposerClient::startHdcpNegotiation(
+    int64_t in_display, const ::aidl::android::hardware::drm::HdcpLevels &in_levels) {
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
+ScopedAStatus AidlComposerClient::getLuts(
+    int64_t in_display,
+    const std::vector<::aidl::android::hardware::graphics::composer3::Buffer> &in_buffers,
+    std::vector<::aidl::android::hardware::graphics::composer3::Luts> *_aidl_return) {
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
 }
 
 ScopedAStatus AidlComposerClient::registerCallback(

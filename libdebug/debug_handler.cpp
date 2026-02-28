@@ -49,12 +49,24 @@ DefaultDebugHandler g_default_debug_handler;
 DebugHandler * DebugHandler::debug_handler_ = &g_default_debug_handler;
 std::bitset<32> DebugHandler::log_mask_ = 0x1;  // Always print logs tagged with value 0
 
+__attribute__((noinline)) DebugHandler *DebugHandler::Get() {
+  return debug_handler_;
+}
+
 void DebugHandler::Set(DebugHandler *debug_handler) {
   if (debug_handler) {
     debug_handler_ = debug_handler;
   } else {
     debug_handler_ = &g_default_debug_handler;
   }
+}
+
+__attribute__((noinline)) std::bitset<32> &DebugHandler::GetLogMask() {
+  return log_mask_;
+}
+
+__attribute__((noinline)) void DebugHandler::SetLogMask(const std::bitset<32> &log_mask) {
+  log_mask_ = log_mask;
 }
 
 }  // namespace display

@@ -74,10 +74,10 @@ class DebugHandler {
   virtual int GetProperty(const char *property_name, int *value) = 0;
   virtual int GetProperty(const char *property_name, char *value) = 0;
 
-  static inline DebugHandler *Get() { return debug_handler_; }
+  static DebugHandler *Get();
   static void Set(DebugHandler *debug_handler);
-  static inline std::bitset<32> & GetLogMask() { return log_mask_; }
-  static void SetLogMask(const std::bitset<32> &log_mask) { log_mask_ = log_mask; }
+  static std::bitset<32> &GetLogMask();
+  static void SetLogMask(const std::bitset<32> &log_mask);
 
  protected:
   virtual ~DebugHandler() { }

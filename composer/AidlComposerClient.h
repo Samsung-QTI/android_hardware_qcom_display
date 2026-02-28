@@ -151,6 +151,10 @@ class AidlComposerClient : public BnComposerClient {
   ScopedAStatus getDisplayCapabilities(int64_t in_display,
                                        std::vector<DisplayCapability> *aidl_return) override;
   ScopedAStatus getDisplayConfigs(int64_t in_display, std::vector<int32_t> *aidl_return) override;
+  ScopedAStatus getDisplayConfigurations(
+      int64_t in_display, int32_t in_maxFrameIntervalNs,
+      std::vector<::aidl::android::hardware::graphics::composer3::DisplayConfiguration>*
+          _aidl_return) override;
   ScopedAStatus getDisplayConnectionType(int64_t in_display,
                                          DisplayConnectionType *aidl_return) override;
   ScopedAStatus getDisplayIdentificationData(int64_t in_display,
@@ -178,6 +182,16 @@ class AidlComposerClient : public BnComposerClient {
                                          std::vector<ContentType> *aidl_return) override;
   ScopedAStatus getDisplayDecorationSupport(
       int64_t in_display, std::optional<DisplayDecorationSupport> *aidl_return) override;
+  ScopedAStatus notifyExpectedPresent(
+      int64_t in_display, const ClockMonotonicTimestamp &in_expectedPresentTime,
+      int32_t in_frameIntervalNs) override;
+  ScopedAStatus getMaxLayerPictureProfiles(int64_t in_display, int32_t *_aidl_return) override;
+  ScopedAStatus startHdcpNegotiation(
+      int64_t in_display, const ::aidl::android::hardware::drm::HdcpLevels &in_levels) override;
+  ScopedAStatus getLuts(
+      int64_t in_display,
+      const std::vector<::aidl::android::hardware::graphics::composer3::Buffer> &in_buffers,
+      std::vector<::aidl::android::hardware::graphics::composer3::Luts> *_aidl_return) override;
   ScopedAStatus registerCallback(const std::shared_ptr<IComposerCallback> &in_callback) override;
   ScopedAStatus setActiveConfig(int64_t in_display, int32_t in_config) override;
   ScopedAStatus setActiveConfigWithConstraints(
