@@ -565,7 +565,7 @@ DisplayError DisplayBuiltIn::SetupDemura() {
   hfc_buffer_size_ = buf_out_params->buffers[0].size;
 #endif
   input_cfg.panel_id = panel_id_;
-  DLOGI("panel id %lx\n", input_cfg.panel_id);
+  DLOGI("panel id %" PRIx64 "\n", input_cfg.panel_id);
   std::unique_ptr<DemuraIntf> demura =
       pf_factory_->CreateDemuraIntf(input_cfg, prop_intf_, buffer_allocator_, spr_);
   if (!demura) {
@@ -716,14 +716,14 @@ DisplayError DisplayBuiltIn::SetupDemuraT0AndTn() {
     Debug::Get()->GetProperty(DEMURA_PRIMARY_PANEL_OVERRIDE_HIGH, &panel_id_w);
     panel_id |= ((static_cast<uint64_t>(panel_id_w)) << 32);
     Debug::Get()->GetProperty(DISABLE_DEMURA_PRIMARY, &value);
-    DLOGI("panel overide total value %lx\n", panel_id);
+    DLOGI("panel overide total value %" PRIx64 "\n", panel_id);
   } else {
     Debug::Get()->GetProperty(DEMURA_SECONDARY_PANEL_OVERRIDE_LOW, &panel_id_w);
     panel_id = static_cast<uint32_t>(panel_id_w);
     Debug::Get()->GetProperty(DEMURA_SECONDARY_PANEL_OVERRIDE_HIGH, &panel_id_w);
     panel_id |= ((static_cast<uint64_t>(panel_id_w)) << 32);
     Debug::Get()->GetProperty(DISABLE_DEMURA_SECONDARY, &value);
-    DLOGI("panel overide total value %lx\n", panel_id);
+    DLOGI("panel overide total value %" PRIx64 "\n", panel_id);
   }
 
   if (value > 0) {
@@ -745,7 +745,7 @@ DisplayError DisplayBuiltIn::SetupDemuraT0AndTn() {
     }
   }
   panel_id_ = panel_id;
-  DLOGI("panel_id 0x%lx", panel_id_);
+  DLOGI("panel_id 0x%" PRIx64, panel_id_);
 
 #if defined SDM_UNIT_TESTING || defined TRUSTED_VM
   demura_allowed = true;
