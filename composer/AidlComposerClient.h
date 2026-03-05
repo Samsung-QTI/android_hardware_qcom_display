@@ -151,6 +151,10 @@ class AidlComposerClient : public BnComposerClient {
   ScopedAStatus getDisplayCapabilities(int64_t in_display,
                                        std::vector<DisplayCapability> *aidl_return) override;
   ScopedAStatus getDisplayConfigs(int64_t in_display, std::vector<int32_t> *aidl_return) override;
+  ScopedAStatus getDisplayConfigurations(
+      int64_t in_display, int32_t in_maxFrameIntervalNs,
+      std::vector<::aidl::android::hardware::graphics::composer3::DisplayConfiguration>
+          *_aidl_return) override;
   ScopedAStatus getDisplayConnectionType(int64_t in_display,
                                          DisplayConnectionType *aidl_return) override;
   ScopedAStatus getDisplayIdentificationData(int64_t in_display,
@@ -165,6 +169,7 @@ class AidlComposerClient : public BnComposerClient {
   ScopedAStatus getDisplayPhysicalOrientation(int64_t in_display, Transform *aidl_return) override;
   ScopedAStatus getHdrCapabilities(int64_t in_display, HdrCapabilities *aidl_return) override;
   ScopedAStatus getMaxVirtualDisplayCount(int32_t *aidl_return) override;
+  ScopedAStatus getMaxLayerPictureProfiles(int64_t in_display, int32_t *_aidl_return) override;
   ScopedAStatus getOverlaySupport(OverlayProperties *aidl_return) override;
   ScopedAStatus getPerFrameMetadataKeys(int64_t in_display,
                                         std::vector<PerFrameMetadataKey> *aidl_return) override;
@@ -174,6 +179,10 @@ class AidlComposerClient : public BnComposerClient {
                                        ::ndk::ScopedFileDescriptor *aidl_return) override;
   ScopedAStatus getRenderIntents(int64_t in_display, ColorMode in_mode,
                                  std::vector<RenderIntent> *aidl_return) override;
+  ScopedAStatus getLuts(
+      int64_t in_display, const std::vector<::aidl::android::hardware::graphics::composer3::Buffer>
+                              &in_buffers,
+      std::vector<::aidl::android::hardware::graphics::composer3::Luts> *_aidl_return) override;
   ScopedAStatus getSupportedContentTypes(int64_t in_display,
                                          std::vector<ContentType> *aidl_return) override;
   ScopedAStatus getDisplayDecorationSupport(
@@ -196,6 +205,12 @@ class AidlComposerClient : public BnComposerClient {
   ScopedAStatus setDisplayedContentSamplingEnabled(int64_t in_display, bool in_enable,
                                                    FormatColorComponent in_component_mask,
                                                    int64_t in_max_frames) override;
+  ScopedAStatus notifyExpectedPresent(
+      int64_t in_display, const ClockMonotonicTimestamp &in_expectedPresentTime,
+      int32_t in_frameIntervalNs) override;
+  ScopedAStatus startHdcpNegotiation(
+      int64_t in_display,
+      const ::aidl::android::hardware::drm::HdcpLevels &in_levels) override;
   ScopedAStatus setPowerMode(int64_t in_display, PowerMode in_mode) override;
   ScopedAStatus setReadbackBuffer(int64_t in_display, const NativeHandle &in_buffer,
                                   const ::ndk::ScopedFileDescriptor &in_release_fence) override;

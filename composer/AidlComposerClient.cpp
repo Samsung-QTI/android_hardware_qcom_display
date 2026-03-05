@@ -333,6 +333,18 @@ ScopedAStatus AidlComposerClient::getDisplayConfigs(int64_t in_display,
   return TO_BINDER_STATUS(INT32(error));
 }
 
+ScopedAStatus AidlComposerClient::getDisplayConfigurations(
+    int64_t in_display, int32_t in_maxFrameIntervalNs,
+    std::vector<::aidl::android::hardware::graphics::composer3::DisplayConfiguration>
+        *_aidl_return) {
+  (void)in_display;
+  (void)in_maxFrameIntervalNs;
+  if (_aidl_return) {
+    _aidl_return->clear();
+  }
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
 ScopedAStatus AidlComposerClient::getDisplayConnectionType(int64_t in_display,
                                                            DisplayConnectionType *aidl_return) {
   auto error = hwc_session_->GetDisplayConnectionType(in_display, aidl_return);
@@ -434,6 +446,15 @@ ScopedAStatus AidlComposerClient::getMaxVirtualDisplayCount(int32_t *aidl_return
   return ScopedAStatus::ok();
 }
 
+ScopedAStatus AidlComposerClient::getMaxLayerPictureProfiles(int64_t in_display,
+                                                             int32_t *_aidl_return) {
+  (void)in_display;
+  if (_aidl_return) {
+    *_aidl_return = 0;
+  }
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
 ScopedAStatus AidlComposerClient::getOverlaySupport(OverlayProperties *aidl_return) {
   return TO_BINDER_STATUS(INT32(Error::Unsupported));
 }
@@ -521,6 +542,18 @@ ScopedAStatus AidlComposerClient::getRenderIntents(int64_t in_display, ColorMode
       reinterpret_cast<std::underlying_type<RenderIntent>::type *>(aidl_return->data()));
 
   return TO_BINDER_STATUS(INT32(error));
+}
+
+ScopedAStatus AidlComposerClient::getLuts(
+    int64_t in_display, const std::vector<::aidl::android::hardware::graphics::composer3::Buffer>
+                            &in_buffers,
+    std::vector<::aidl::android::hardware::graphics::composer3::Luts> *_aidl_return) {
+  (void)in_display;
+  (void)in_buffers;
+  if (_aidl_return) {
+    _aidl_return->clear();
+  }
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
 }
 
 ScopedAStatus AidlComposerClient::getSupportedContentTypes(int64_t in_display,
@@ -632,6 +665,22 @@ ScopedAStatus AidlComposerClient::setDisplayedContentSamplingEnabled(
     int64_t in_display, bool in_enable, FormatColorComponent in_component_mask,
     int64_t in_max_frames) {
   // setDisplayedContentSamplingEnabled is not supported
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
+ScopedAStatus AidlComposerClient::notifyExpectedPresent(
+    int64_t in_display, const ClockMonotonicTimestamp &in_expectedPresentTime,
+    int32_t in_frameIntervalNs) {
+  (void)in_display;
+  (void)in_expectedPresentTime;
+  (void)in_frameIntervalNs;
+  return TO_BINDER_STATUS(INT32(Error::Unsupported));
+}
+
+ScopedAStatus AidlComposerClient::startHdcpNegotiation(
+    int64_t in_display, const ::aidl::android::hardware::drm::HdcpLevels &in_levels) {
+  (void)in_display;
+  (void)in_levels;
   return TO_BINDER_STATUS(INT32(Error::Unsupported));
 }
 
