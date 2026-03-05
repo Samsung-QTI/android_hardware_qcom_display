@@ -36,6 +36,7 @@
 #include <utils/formats.h>
 #include <core/buffer_allocator.h>
 #include <sys/mman.h>
+#include <inttypes.h>
 #include <private/hw_interface.h>
 #include <private/hw_info_interface.h>
 #include <iomanip>
@@ -2844,8 +2845,8 @@ void DisplayIPCVmCallbackImpl::ExportHFCBuffer() {
   export_buf_in_params->panel_id = panel_id_;
   export_buf_in_params->mem_handle = buffer_info_hfc_.alloc_buffer_info.mem_handle;
 
-  DLOGI("Allocated hfc buffer mem_handle %d size %d panel id :%x", export_buf_in_params->mem_handle,
-        export_buf_in_params->size, export_buf_in_params->panel_id);
+  DLOGI("Allocated hfc buffer mem_handle %" PRId64 " size %" PRIu32 " panel id :%" PRIx64,
+        export_buf_in_params->mem_handle, export_buf_in_params->size, export_buf_in_params->panel_id);
   if ((ret = ipc_intf_->SetParameter(kIpcParamSetHFCBuffer, in))) {
     DLOGE("Failed to export demura buffers, error = %d", ret);
     buffer_allocator_->FreeBuffer(&buffer_info_hfc_);
